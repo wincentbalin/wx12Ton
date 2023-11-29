@@ -1,0 +1,198 @@
+#!/usr/bin/guile -s
+!#
+;Copyright (C) 2004 Matthias Kleinmann <Matthias dot Kleinmann at gmx dot de>
+;This file is part of wx12Ton: http://wx12ton.sourceforge.net/
+;
+;Do simple tests to the !12ton guile bings.
+
+(use-modules (site x12ton))
+
+(display "---------- note inteface test ---------")(newline)
+(define (pn x) 
+ (display "(")
+ (if (note-oct? x) (display (note_oct x)) (display "#"))
+ (display ",")
+ (display (note_val x))
+ (display ")")
+ (newline)
+)
+
+(define a (note_new 3 #t))
+(display "a(3,true):")(pn a)
+(if (not(eq? (note_val a) 3)) (exit 1))
+(if (note-oct? a) (exit 1))
+
+(set! a (note_oct a 0))
+(display "a.set_oct(0):")(pn a)
+(if (not(eq? (note_val a) 3)) (exit 1))
+(if (not(eq? (note_oct a) 0)) (exit 1))
+(if (not(note-oct? a)) (exit 1))
+
+(set! a (note_transpose a -4))
+(display "a-=4:")(pn a)
+(if (not(note-eq? (note_new -1) a)) (exit 1))
+
+(define b (note_new 13 #f))
+(display "b(1,false):")(pn b)
+(if (not(eq? (note_val b) 1)) (exit 1))
+(if (not(eq? (note_oct b) 1)) (exit 1))
+(if (not(note-oct? b)) (exit 1))
+
+(display "b full_eq b:")(display (note-eq? b b))(newline)
+(if (not(note-eq? b b)) (exit 1))
+(display "b full_eq b.set_no_oct:")
+ (display (note-eq? b (note_set_no_oct b)))(newline)
+(if (note-eq? b (note_set_no_oct b)) (exit 1))
+(display "b.set_no_oct full_eq b.set_no_oct:")
+ (display (note-eq? (note_set_no_oct b) (note_set_no_oct b)))(newline)
+(if (not(note-eq? (note_set_no_oct b) (note_set_no_oct b))) (exit 1))
+
+(display "a-b:")(display (note_interval a b))(newline)
+(if (not(eq? (note_interval a b) -14)) (exit 1))
+
+(display "mod(a-b):")(display (interval_modulo (note_interval a b)))(newline)
+(if (not(eq? (interval_modulo (note_interval a b)) 10)) (exit 1))
+
+(display "a==b:")(display (note-equal? a b))(newline)
+(if (note-equal? a b) (exit 1))
+(display "a<b:")(display (note-less? a b))(newline)
+(if (note-less? a b) (exit 1))
+
+(set! b (note_new 3 #t))
+(display "b(3,true):")(pn b)
+(display "b+=11:")(pn (note_transpose b 11) )
+(if (not(note-eq? (note_transpose b 11) (note_new 2 #t))) (exit 1))
+
+(display "> note interface test passed <")(newline)
+
+#!---------------------------------------------------------------
+!#
+(newline)
+
+(display "---------- series inteface test ---------")(newline)
+
+(define (ps x) (display (series_to_string x))(newline))
+
+(define a (series_new))
+(display "a:")(ps a)
+
+(define b (series_new "LABCDEFGHIJK"))
+(display "b(LABCDEFGHIJK):")(ps b)
+(if (not(equal? (series_to_string b) "LABCDEFGHIJK")) (exit 1))
+(display "b full_eq b:")(display (series-eq? b b))(newline)
+(if (not(series-eq? b b)) (exit 1))
+(display "b == b:")(display (series-eq? b b))(newline)
+(if (not(series-equal? b b)) (exit 1))
+(display "b full_eq (b.at(3).set_no_oct()):")
+ (display (series-eq? b (series_at b 3 (note_set_no_oct (series_at b 3)))))
+ (newline)
+(display "b == (b.at(3).set_no_oct()):")
+ (display (series-equal? b (series_at b 3 (note_set_no_oct (series_at b 3)))))
+ (newline)
+(if (not(series-equal? b (series_at b 3 (note_set_no_oct (series_at b 3)))))
+  (exit 1))
+
+(display "b.at(3):")(pn (series_at b 3))
+(if (not(note-eq? (series_at b 3) (note_new 2 #t))) (exit 1))
+
+(set! a (series_new "iGiAiJiKiBiEiCiFiIiHiLiD"))
+(set! a (series_at a 5 (note_set_no_oct (series_at a 5))))
+(display "a.at(5).set_oct(4):")(ps a)
+(if (not(series-eq? a (series_new "iGiAiJiKiBEiCiFiIiHiLiD")))
+ (exit 1))
+
+(display "a.GetBasicForm(5):")(ps (series_basic_form a 5))
+(if (not(series-eq? (series_basic_form a 5) (series_new
+                 "iLiFjCjDiGJiHiKjBjAjEiI"))) (exit 1))
+(display "a.GetRetrograde(11):")(ps (series_retrograde a 11))
+(if (not(series-eq? (series_retrograde a 11) (series_new
+                 "jCjKjGjHjEjBDjAjJjIiLjF"))) (exit 1))
+(display "a.GetInversion(2):")(ps (series_inversion a 2))
+(if (not(series-eq? (series_inversion a 2) (series_new
+                 "iIjCiFiEjBKAJGHDL"))) (exit 1))
+(display "a.GetNormalized():")(ps (series_normalized a))
+(if (not(series-eq? (series_normalized a) (series_new
+                 "hAgEgIgHgKhBLCFGDJ."))) (exit 1))
+
+(display "a.next_permutation()")(ps (series_next_permutation a))
+(if (not(series-eq? (series_next_permutation a) (series_new
+                 "iGiAiJiKiBEiCiFiIiLiDiH"))) (exit 1))
+(display "a.prev_permutation(3)")(ps (series_prev_permutation a 3))
+(if (not(series-eq? (series_prev_permutation a 3) (series_new
+                 "iGiAiJiIiLiKiHiFEiDiCiB"))) (exit 1))
+
+(set! a (series_prev_permutation a))
+(set! a (series_find_valid_backw a '("ALL_INTERV") ))
+(display "a << ALL_INTERV:")(ps a);
+(if (not(series-eq? a (series_new "iGiAiJiKiBiCiHiFiDiLEiI")))
+ (exit 1))
+
+(define err (series_find_error a '("FOURTH" "CHORD")))
+(display "a.find_error(FOURTH CHORD):")(display err)(newline)
+(if (not(eq? (car err) 6)) (exit 1))
+(if (not(equal? (cdr err) "FOURTH")) (exit 1))
+(display "a.err_transl(find_error(FOURTH CHORD)):")
+ (display (error_pos_transform err))(newline)
+(if (not(eq? (error_pos_transform err) 5 )) (exit 1))
+
+(define aold (series_new "HBACDEGFIJLK"))
+(set! a aold)
+(display "a(HBACDEGFIJLK):")(ps a)
+
+(if (and (eq? (length (command-line)) 2) 
+         (equal? (list-ref (command-line) 1) "quick"))
+ (begin (display "> skipping find_valid test <")(newline)) (begin
+
+(set! a (series_prev_permutation a))
+(set! a (series_find_valid_backw a '("DEFAULT")))
+(display "a << DEFAULT:")(ps a)
+(if (not(series-eq? a (series_new "GKLJIHFEDBCA")))
+ (exit 1))
+(set! a (series_next_permutation a))
+(set! a (series_find_valid_forw a '("FOURTH" "CHORD" "EQ_INTERV")))
+(display "a << FOURTH CHORD EQ_INTERV:")(ps a)
+(if (not(series-eq? a aold)) (exit 1))
+
+))
+
+(set! a (series_new "ABCDEFGGHIJK"))
+(display "a(ABCDEFGGHIJK):")(ps a)
+(display "a.FindDoubled:")(display (series_find_doubled a))(newline)
+(if (not(eq? (series_find_doubled a) 7)) (exit 1))
+
+(define aold (series_new "HBACDEGFIJLK"))
+(set! a aold)
+(display "a(HBACDEGFIJLK):")(ps a)
+(display "a.less(a.at(3).set_oct(3),a.at(3).set_oct(4)):")
+(display (series-less? 
+  (series_at a 3 (note_oct (series_at a 3) 3))
+  (series_at a 3 (note_oct (series_at a 3) 4))))(newline)
+(if (series-less?
+  (series_at a 3 (note_oct (series_at a 3) 3))
+  (series_at a 3 (note_oct (series_at a 3) 4))) (exit 1))
+
+(define i 0)
+(while (< i 12) 
+ (if (series-less? (series_basic_form aold i) a) 
+             (set! a (series_basic_form aold i)))
+ (if (series-less? (series_retrograde aold i) a) 
+             (set! a (series_retrograde aold i)))
+ (if (series-less? (series_inversion aold i) a) 
+             (set! a (series_inversion aold i)))
+ (if (series-less? (series_inversion (series_retrograde aold i) 0) a) 
+             (set! a (series_inversion (series_basic_form aold i) 0)))
+ (set! i (+ i 1))
+)
+
+(display "a.self_normalized:")(ps a)
+(display "a.s_n.IsNorm:")(display (series-normalized? a))(newline)
+(if (not(series-normalized? a)) (exit 1))
+
+(define mid (open-output-file "test.mid"))
+(series_write a mid)
+(close mid)
+(display "write-read:")(ps (call-with-input-file "test.mid" series_read))
+(if (not(series-eq? a (call-with-input-file "test.mid" series_read))) (exit 1))
+(delete-file "test.mid")
+
+(display "> series interface test succeeded <")(newline)

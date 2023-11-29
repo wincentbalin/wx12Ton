@@ -1,0 +1,41 @@
+#! /usr/bin/guile -s
+!#
+;Copyright (C) 2004 Matthias Kleinmann <Matthias dot Kleinmann at gmx dot de>
+;This file is part of wx12Ton: http://wx12ton.sourceforge.net/
+;
+;Print out all normalized series, which do not have the tonal error sepcified
+;on command line (any combination of "OK" "FOURTH" "CHORD" "EQ_INTERV"
+;"ALL_INTERV"). The output format is a 12 letter code for the series follwoed
+;by the symmetries within the series: 
+; ":R" series is equal to its retrograde
+; ":I" series is equal to its inversion (never happens)
+; ":RI" series is equal to its retorgrade inverted
+;
+;You may use x12ton-str2mid to convert the 12 letter code to a !12ton MIDI file.
+
+(use-modules (site x12ton))
+
+(define s     (series_new "ABCDEFGHIJKL"))
+(define slast (series_new "AGFLKJEDHBCI"))
+
+(define err (list-tail (command-line) 1))
+
+(define (retrograde)
+ (series_retrograde s (note_interval (note_new 0) (series_at s 11)))
+)
+(define (inversion) (series_inversion s 0))
+(define (retrograde-inverted) (series_inversion (retrograde) 0))
+(define (ps x) (display (series_to_string x)))
+(define (wri x) (series_write s x))
+
+(while (series-less? s slast)
+ (set! s (series_find_valid_forw s err))
+ (if (series-normalized? s) (begin
+   (ps s)
+   (if (series-equal? s (retrograde         )) (display ":R"))
+   (if (series-equal? s (inversion          )) (display ":I"))
+   (if (series-equal? s (retrograde-inverted)) (display ":RI"))
+   (newline)
+ ))
+ (set! s (series_next_permutation s))
+)

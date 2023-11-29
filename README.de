@@ -1,0 +1,95 @@
++-----------------------+
+|wx12Ton README.de Datei|
++-----------------------+
+
+Version:        wx12Ton 1.1.0-rc1 (vom 24.6.2004)
+enthaelt zudem: libguile-12ton.so 1.0.0
+Sprachen:       German, English
+Autor:          Matthias Kleinmann <Matthias Punkt Kleinmann Klammeraffe gmx
+                                    Punkt de>
+License:        GNU General Public License
+Homepage:       http://wx12ton.sourceforge.net/de/
+Download:       http://sourceforge.net/project/showfiles.php?group_id=107429
+
+Inhalt
+------
+*Kurzbeschreibung
+*Systemvorraussetzungen
+*Copyright & Warranty
+
+Kurzbeschreibung
+----------------
+wx12Ton ist eine vollstaendig Neuentwicklung des Programms !12Ton, welches ich
+Mitte der Neunziger unter DOS als Sharewareprogramm vertrieben habe.
+
+Zwoelftonmusik wurde Anfang des letzten Jahrhunderts als eine vielversprechende
+Kompositionstechnik ersonnen, mit der Intention eines Regelwerks fuer Musik
+ohne tonale Klaenge. Ungeachtet der heutigen Stellung dieser Technik, ist
+wx12Ton nun vor allem geeignet, laestige Aufgaben, die beim Umgang mit
+Zwoelftonmusik entstehen, vom Rechner uebernehmen zu lassen. Als wichtigste
+Leistungsmerkmale kann wx12Ton alle 48 Perspektiven einer Zwoelftonreihe
+anzeigen und drucken, Reihen auf tonale Wendungen kontrollieren bzw. testen, ob
+es sich um eine Allintervallreihe handelt, eine Reihe abspielen sowie eine
+Liste aller gueltigen Reihen anzeigen. Letzteres ist vor allem interessant, da
+eine Zwoelftonreihe bekanntlich aus allen zwoelf verschiedenen Toenen (c,
+cis,..., b, h) besteht und es somit es ungefaehr eine halbe Milliarde
+moeglicher Reihen gibt. wx12Ton kann nun diese Reihen anzeigen und nach
+speziellen Kriterien wie z.B.  Allintervallreihen filtern. Dadurch kann sich
+die Anzahl der unabhaengigen Reihen auf wenige zehntausend reduzieren. Da das
+Ausgabeformat von wx12Ton eine gueltige MIDI-Datei ist, sollte das Programm
+auch mit den gaengigen Notensatzprogrammen zusammenarbeiten.
+
+Das Programm ist in der Programmiersprache C++ unter Verwendung von wxWidgets
+entwickelt worden. Es ist Ziel, dass es wenigstens unter wxMSW (Windows
+9x/ME/NT/2000/XP) sowie wxGTK (GTK2 fuer Linux) laeuft. Zusaetzlich werde ich
+ausfuehrbare Dateien fuer Win9x/ME/NT/2000/XP bereitstellen.
+
+Systemvorraussetzungen
+----------------------
+*Windows 9x/ME/NT/2000/XP*
+Es ist aeusserst ratsam, die auf der Download-Seite angebotenen, ausfuehrbaren
+Dateien (zusammengfasst in einem .zip-Archiv) zu verwenden. Die ausfuehrbaren
+Dateien sollten ohne jegliche Installation (das .zip-Archiv muss nur in ein
+beliebiges Verzeichnis entpackt werden) unter Win9x/ME/NT/2000/XP
+funktionieren.
+
+*Andere Betriebssysteme*
+Bedauerlicherweise ist es recht schwierig, ausfuehrbare Dateien fuer andere
+Betriebssysteme bereitzustellen (zumindest fuer Linux und auf andere Systeme
+habe ich keinen Zugriff). Daher muss man sich wx12Ton fuer andere
+Betriebssysteme vom Quellcode ausgehend uebersetzen. Der Quellcode steht als
+.tar.gz-Archiv auf der Download-Seite bereit, der Uebersetzungsvorgang laeuft
+dank eines ./confiugre Skripts im wesentlichen automatisch ab. Um den Quellcode
+uebersetzen zu koennen, benoetigt man wenigstens die wxWidgets Bibliothek
+>=2.2.0 (http://www.wxwidgets.org); um darueberhinaus die Reihen auch auf einem
+MIDI-Geraet ausgeben zu koennen, wird zusaetzlich noch entweder ein Programm
+zum Abspielen von MIDI-Dateien benoetigt, oder aber die SDL_mixer Biliothek
+(http://www.libsdl.org/projects/SDL_mixer). Falls man Ambitionen hat, eigene
+Algorithmen in der Sprache "guile" zu verwenden, so muss zusaetzlich noch guile
+>=1.6.0 (http://www.gnu.org/software/guile) installiert sein.
+
+Copyright & Warranty
+--------------------
+Das gesamte Archiv ist urheberechtlich geschuetzt. Die Urheberrechte liegen
+beim Autor (Matthias Kleinmann). Die genauen Bestimmungen sind aus rechtlichen
+Gruenden in englischer Sprache gehalten:
+
+For the whole archive this applies:
+
+ Copyright (C) 2004 Matthias Kleinmann <Matthias dot Kleinmann at gmx dot de>
+ All rights reserved.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+

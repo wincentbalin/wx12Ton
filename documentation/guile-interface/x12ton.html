@@ -1,0 +1,153 @@
+<html>
+<head><title>!12ton x12ton guile interface documentation</title>
+</head>
+<body>
+<h1>x12ton guile Interface Documentation</h1>
+
+<h2>Interface to Single Notes</h2>
+<table border width="100%">
+<tr><th>proc name<th>required args<th>optional args<th>return value<th>
+ related C++ method(s)
+<tr><td><code>note_new</code>
+    <td><em>interval</em><td><em>bool</em>=<code>#f</code>
+    <td>Note which has <em>interval</em> to base note. If <em>bool</em> is
+	provided and set to <code>#t</code>, the returned note has no octave
+        information.
+    <td><code>Note::Note(NoteDiff,bool)</code>,
+        <code>Note::set(NoteDiff,bool)</code>
+<tr><td><code>note-equal?</code><td><em>note1</em>, <em>note2</em><td>
+ <td>true if the tone of <em>note1</em> value is equal to the one of
+     <em>note2</em>
+ <td><code>Note::operator ==(const Note&amp;)const</code>
+<tr><td><code>note-less?</code><td><em>note1</em>, <em>note2</em><td>
+ <td>true if the tone of <em>note1</em> value is less then the one of
+     <em>note2</em>
+ <td><code>Note::operator &lt;(const Note&amp;)const</code>
+<tr><td><code>note-eq?</code><td><em>note1</em>, <em>note2</em><td>
+ <td>true if the <em>note1</em> equals (including octave information)
+     <em>note2</em>
+ <td><code>Note::full_eq(const Note&amp;)const</code>
+<tr><td><code>note_val</code>
+    <td><em>note</em><td><em>tone</em>
+    <td>If <em>tone</em> is not provided, the tone value of <em>note</em>. Else
+        <em>note</em> is returned with the tone value set to <em>tone</em>.
+    <td><code>Note::get_val()const</em>, <code>Note::set_val(Tone)</code>
+<tr><td><code>note_oct</code>
+    <td><em>note</em><td><em>octave</em>
+    <td>If <em>octave</em> is not provided, the octave value of <em>note</em>.
+        Else <em>note</em> is returned with the octave value set to
+        <em>octave</em>.
+    <td><code>Note::get_oct()const</em>, <code>Note::set_oct(Octave)</code>
+<tr><td><code>note_set_no_oct</code>
+    <td><em>note</em><td>
+    <td><em>note</em> without octave information
+    <td><code>Note::set_no_oct()</code>
+<tr><td><code>note-oct?</code>
+    <td><em>note</em><td>
+    <td>boolean, whether <em>note</em> carries octave information
+    <td><code>Note::no_oct()const</code>
+<tr><td><code>interval_modulo</code><td><em>interval</em><td>
+ <td><em>interval</em> translated into the range 0...11
+ <td><code>static Note::modulo(NoteDiff)</code>
+<tr><td><code>note_interval</code><td><em>note1</em>, <em>note2</em><td>
+ <td>interval between <em>note1</em> and <em>note2</em>
+ <td><code>Note::operator -(const Note&amp;)const</code>
+<tr><td><code>note_transpose</code><td><em>note</em>, <em>interval</em><td>
+ <td><em>note</em> transposed by interval <em>interval</em>.
+      If <em>note</em> has empty octave value, the octave value remains empty.
+ <td><code>Note::operator +(const NoteDiff&amp;)const</code>,
+     <code>Note::operator +=(const NoteDiff&amp;)const</code>
+</table>
+
+<h2>Interface to Series</h2>
+<table border width="100%">
+<tr><th>proc name<th>required args<th>optional args<th>return value
+ <th>related C++ method(s)
+<tr><td><code>series_new</code><td><td><em>string</em>
+ <td>Either an empty series, if <em>string</em> is not provided, or the
+     series, given by <em>string</em>.
+ <td><code>Series::Series()</code>,
+     <code>explicit Series::Series(const std::string&amp;)</code>
+<tr><td><code>series-equal?</code><td><em>series1</em>, <em>series2</em><td>
+ <td>True if the tone values of <em>series1</em> are lexicographical equal 
+     to the one of <em>series2</em>
+ <td><code>Series::operator ==(const Series&amp;)const</code>
+<tr><td><code>series-less?</code><td><em>series1</em>, <em>series2</em><td>
+ <td>True if the tone values of <em>series1</em> are lexicographical less 
+     then the one of <em>series2</em>.
+ <td><code>Series::operator &lt;(const Series&amp;)const</code>
+<tr><td><code>series-eq?</code><td><em>series1</em>, <em>series2</em><td>
+ <td>True if <em>series1</em> equals (including octave information)
+     <em>series2</em>.
+ <td><code>Series::full_eq(const Series&amp;)const</code>
+<tr><td><code>series_to_string</code><td><em>series</em><td>
+ <td>String of <em>series</em>
+ <td><code>Series::get_string()const</code>
+<tr><td><code>series_at</code><td><em>series</em>, <em>position</em>
+ <td><em>note</em><td>If <em>note</em> is given, <em>series</em> with
+ the note at position <em>position</em> set to <em>note</em>. Else the
+ note of <em>series</em> at position <em>position</em>.
+ <td><code>Series::at(unsigned)const</code>
+<tr><td><code>series_basic_form</code><td><em>series</em>, <em>interval</em>
+ <td><td><em>series</em>, transposed by <em>interval</em>
+ <td><code>Series::GetBasicForm(const Note::NoteDiff&amp;)const</code>
+<tr><td><code>series_retrograde</code><td><em>series</em>, <em>interval</em>
+ <td><td>retrograde of <em>series</em>, transposed by <em>interval</em>
+ <td><code>Series::GetRetrograde(const Note::NoteDiff&amp;)const</code>
+<tr><td><code>series_inversion</code><td><em>series</em>, <em>interval</em>
+ <td><td>inversion of <em>series</em>, transposed by <em>interval</em>
+ <td><code>Series::GetInversion(const Note::NoteDiff&amp;)const</code>
+<tr><td><code>series_normalized</code><td><em>series</em><td>
+ <td>lowest of all 48 forms of <em>series</em>
+ <td><code>Series::GetNormalized()const;</code>
+<tr><td><code>series-normalized?</code><td><em>series</em><td>
+ <td>true, if <em>series</em> is normalized
+ <td><code>Series::IsNormalized()const</code>
+<tr><td><code>series_next_permutation</code><td><em>series</em>
+ <td><em>position</em>
+ <td>next permutation (using <code>series-less?</code>) of <em>series</em>,
+     which changes at least <em>position</em> (if <em>position</em> is not
+     given, then the last position is changed).
+ <td><code>Series::next_permutation(unsigned)</code>
+<tr><td><code>series_prev_permutation</code><td><em>series</em>
+ <td><em>position</em>
+ <td>previous permutation (using <code>series-less?</code>) of <em>series</em>,
+     which changes at least <em>position</em> (if <em>position</em> is not
+     given, then the last position is changed).
+ <td><code>Series::prev_permutation(unsigned)</code>
+<tr><td><code>series_find_valid_forw</code><td><em>series</em>,
+ <em>tonal_error</em><td><td>series, which does not have
+ <em>tonal_error</em>. If necessary, go next permutation.
+ <td><code>Series::step_find_valid_forw(int);</code>
+<tr><td><code>series_find_valid_backw</code><td><em>series</em>,
+ <em>tonal_error</em><td><td>series, which does not have
+ <em>tonal_error</em>. If necessary, go previous permutation.
+ <td><code>Series::step_find_valid_backw(int);</code>
+<tr><td><code>series_find_error</code><td><em>series</em>,
+ <em>tonal_error</em><td><td>pair of (1) position of last note of error
+  (<code>0</code> if none) and (2) the tonal error.
+ <td><code>Series::FindError(int)const</code>
+<tr><td><code>series_find_doubled</code><td><em>series</em><td>
+ <td>position of first note, which occurs twice (ignoring octave information),
+  <code>0</code> if no note occurs twice.
+ <td><code>Series::FindDoubled()const</code>
+<tr><td><code>error_pos_transform</code><td><em>error_pair</em><td><td>
+ the position of first note of the phrase, which caused an error
+ <td><code>static Series::transform_error_pos(const TonalErrorPair&amp;)</code>
+<tr><td><code>series_read</code><td><em>port</em><td>
+ <td>series, which is stored in the !12Ton MIDI-file given by <em>port</em>.
+ <td><code>Series_IO::read()</code>
+<tr><td><code>series_write</code><td><em>Series</em>, <em>port</em><td><td>
+ <td><code>Series_IO::write(const Series&amp;)</code>
+
+</table>
+<hr><span style="font-size:x-small"><div align=center>
+last change: 06/01/04<br>
+&copy;2004 Matthias Kleinmann &lt;<a
+href="mailto:Matthias dot Kleinmann at gmx dot de">Matthias dot Kleinmann at
+gmx dot de</a>&gt;<br>
+</div></span>
+</body>
+</html>
+
+

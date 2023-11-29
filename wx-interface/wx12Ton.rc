@@ -1,0 +1,4 @@
+wx12Ton ICON wx12Ton.ico
+edit ICON edit.ico
+serieslist ICON serieslist.ico
+#include "wx/msw/wx.rc"

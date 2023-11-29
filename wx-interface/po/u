@@ -1,0 +1,12 @@
+#!/bin/bash
+#Copyright (C) 2004 Matthias Kleinmann <Matthias dot Kleinmann at gmx dot de>
+
+LANGS=("de")
+SRCS=( ../*.{cpp,h,inc} )
+
+xgettext -C -n -k_ -o wx12Ton.pot "${SRCS[@]}"
+
+for i in "${LANGS[@]}"; do
+ mv $i.po $i-$(date +%y%m%d%H%M%S).po~ &&
+ msgmerge $i-$(date +%y%m%d%H%M%S).po~ wx12Ton.pot > $i.po
+done

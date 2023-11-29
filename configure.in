@@ -1,0 +1,126 @@
+dnl Copyright (C) 2004 Matthias Kleinmann <Matthias dot Kleinmann at gmx dot de>
+AC_PREREQ(2.57)
+AC_INIT(wx12Ton,1.1.0-rc1)
+AC_CONFIG_SRCDIR([algo/series.h])
+AC_CONFIG_AUX_DIR(.config)
+AM_INIT_AUTOMAKE
+
+required_wxwidgets_version="2.2.0"
+required_sdl_version="1.1.5"
+
+AM_MAINTAINER_MODE
+AC_ARG_ENABLE(wx-interface,AC_HELP_STRING([--disable-wx-interface],
+ [do not compile wx12Ton, the wx interface to !12Ton.
+ ]),enable_wx12="$enableval",enable_wx12="yes"
+)
+
+AC_ARG_ENABLE(win-resources,AC_HELP_STRING([--disable-win-resources],
+ [Do not link Windows resources. If $RC_COMPILE is defined or "windres.exe"
+  exists in your path, wx12Ton would be linked with Windows resources
+  otherwise. The resources would be created by calling the command by the
+  command "$RC_COMPILE -i resource_file -o object_file $RC_FLAGS"
+ ]),enable_windres="$enableval",enable_windres="yes"
+)
+
+AC_ARG_ENABLE(guile-interface,AC_HELP_STRING([--disable-guile-interface],
+ [Do not Compile !12Ton guile bindings. The guile bindings are needed to
+  use your own algorithms in wx12ton.
+ ]),enable_guile12="$enableval",enable_guile12="yes"
+)
+
+
+AM_OPTIONS_WXCONFIG
+
+#CFLAGS_orig="$CFLAGS"
+if test "$USE_MAINTAINER_MODE" = "yes"; then
+ ANSI_CXXFLAGS="-Wold-style-cast"
+ CXXFLAGS="$CXXFLAGS -O1 -ggdb -pipe -Werror -Wall -Wextra\
+  -Wformat=2 -Woverloaded-virtual -ansi -std=c++98 -pedantic\
+ -fno-nonansi-builtins -fno-gnu-keywords -fuse-cxa-atexit\
+ -Wabi -Wctor-dtor-privacy -Wsign-promo -Wsynth \
+ -Wpointer-arith -Wcast-align -Wcast-qual -Wconversion -Wwrite-strings -Wshadow"
+# CFLAGS="$CFLAGS -g -pipe -Werror -Wall -W -Wshadow -Wcast-qual\
+#  -Wpointer-arith -Wcast-align -Wwrite-strings"
+fi
+if test -z "$CXXFLAGS"; then CXXFLAGS="-O2"; fi
+if test -z "$CFLAGS";   then CFLAGS="-O2";   fi
+
+AC_SUBST(ANSI_CXXFLAGS)
+
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
+AC_PROG_LIBTOOL
+AC_LANG([C++])
+AC_CHECK_HEADERS([stdint.h],,stdinterr=1)
+if test -n "$stdinterr"; then
+ AC_MSG_ERROR([Header file "stdint.h" not found.])
+fi
+
+if test "$enable_wx12" == "yes"; then
+ AM_PATH_WXCONFIG($required_wxwidgets_version,,wxerr=1)
+ if test -n "$wxerr"; then
+  AC_MSG_ERROR([
+ wxWindows must be installed on your system but wx-config script couldn't be
+ found.
+
+ Please check that wx-config is in path, the directory where wxWindows
+ libraries are installed (returned by 'wx-config --libs' command) is in
+ LD_LIBRARY_PATH or equivalent variable and wxWindows version is
+ $required_wxwidgets_version or above.
+ ])
+ fi
+
+ if test "$enable_windres" == "yes"; then
+  if test -z "$RC_COMPILE"; then
+   AC_PATH_TOOL([RC_COMPILE],[windres.exe])
+  fi
+  if test -z "$RC_FLAGS"; then
+   RC_FLAGS="--include-dir `$WX_CONFIG_PATH --prefix`/include/\
+    --include-dir \$(srcdir)"
+  fi
+ else
+  RC_COMPILE=""
+  RC_FLAGS=""
+ fi
+ AC_SUBST(RC_FLAGS)
+ AC_SUBST(RC_COMPILE)
+fi
+AM_CONDITIONAL(WITH_RESOURCES,test -n "$RC_COMPILE")
+AM_CONDITIONAL(WITH_WX_INTERFACE,test "$enable_wx12" == "yes")
+
+#CFLAGS_new="$CFLAGS"
+#CFLAGS="$CFLAGS_orig"
+AC_LANG([C])
+AM_PATH_SDL($required_sdl_version,,sdlerr=1)
+if test -z "$sdlerr"; then
+ AC_CHECK_LIB(SDL_mixer,Mix_OpenAudio,true,sdlerr=1,"$SDL_CFLAGS" "$SDL_LIBS")
+fi
+AC_LANG([C++])
+#CFLAGS="$CFLAGS_new"
+
+if test -n "$sdlerr"; then
+ AC_MSG_WARN([
+ SDL_mixer library not found. The helper application playmus_12T will not be
+ compiled. Without playmus_12T no sound output will be possible from within
+ wx12Ton. However, you can use other external MIDI players, see the -m command
+ line option for wx12Ton.
+ ])
+fi
+AM_CONDITIONAL(WITH_SDL,test -z "$sdlerr")
+
+if test "$enable_guile12" == "yes"; then
+ GUILE_FLAGS
+ GUILE_SITE_DIR
+fi
+AM_CONDITIONAL(WITH_GUILE_INTERFACE,test "$enable_guile12" == "yes")
+
+AC_CONFIG_FILES([Makefile
+                 algo/Makefile
+                 guile-interface/Makefile
+                 wx-interface/Makefile
+                 wx-interface/po/Makefile
+                 playmus_12T/Makefile
+                ])
+AC_OUTPUT

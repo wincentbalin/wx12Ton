@@ -1,0 +1,416 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-06-24 11:59+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../enter_series.cpp:55
+msgid "tonal is (t)"
+msgstr ""
+
+#: ../enter_series.cpp:58 ../list_relat.cpp:116
+msgid "&play"
+msgstr ""
+
+#: ../enter_series.cpp:68
+msgid "The series can be modfied with the arrow keys and PgUp/PgDown."
+msgstr ""
+
+#: ../enter_series.cpp:70
+msgid "tonal phrases"
+msgstr ""
+
+#: ../enter_series.cpp:75
+msgid "&goto error"
+msgstr ""
+
+#: ../enter_series.cpp:79
+msgid "algorithms"
+msgstr ""
+
+#: ../enter_series.cpp:84
+msgid "&run"
+msgstr ""
+
+#: ../enter_series.cpp:91
+msgid "use octave information"
+msgstr ""
+
+#: ../enter_series.cpp:94
+msgid "iterate (m)"
+msgstr ""
+
+#: ../enter_series.cpp:106 ../list_relat.cpp:143
+msgid "&apply"
+msgstr ""
+
+#: ../enter_series.cpp:110 ../list_relat.cpp:147
+msgid "&close window"
+msgstr ""
+
+#: ../enter_series.cpp:181
+msgid "Edit Series"
+msgstr ""
+
+#: ../flush_relat.cpp:36 ../frame.cpp:151
+msgid "Find series"
+msgstr ""
+
+#: ../flush_relat.cpp:43
+msgid ""
+"List all normalized series, excluding\n"
+"Series, which contain tonal phrases,\n"
+"where"
+msgstr ""
+
+#: ../flush_relat.cpp:51
+msgid "Calculation steps: "
+msgstr ""
+
+#: ../flush_relat.cpp:53
+msgid "Valid Series: "
+msgstr ""
+
+#: ../flush_relat.cpp:55
+msgid "Memory usage: "
+msgstr ""
+
+#: ../flush_relat.cpp:70
+#, c-format
+msgid "%.1f million steps"
+msgstr ""
+
+#: ../flush_relat.cpp:72
+#, c-format
+msgid "%i series"
+msgstr ""
+
+#: ../flush_relat.cpp:74
+#, c-format
+msgid "%.1f MB"
+msgstr ""
+
+#: ../flush_relat.cpp:85
+msgid "List of all series"
+msgstr ""
+
+#: ../forms.cpp:34
+#, c-format
+msgid "B%+i"
+msgstr ""
+
+#: ../forms.cpp:34
+#, c-format
+msgid "R%+i"
+msgstr ""
+
+#: ../forms.cpp:34
+#, c-format
+msgid "I%+i"
+msgstr ""
+
+#: ../forms.cpp:34
+#, c-format
+msgid "(I%+i)R"
+msgstr ""
+
+#: ../forms.cpp:69
+msgid "basic form (B)"
+msgstr ""
+
+#: ../forms.cpp:69
+msgid "retrograde (R)"
+msgstr ""
+
+#: ../forms.cpp:71
+msgid "inversion (I)"
+msgstr ""
+
+#: ../forms.cpp:71
+msgid "retrograde inverted"
+msgstr ""
+
+#: ../frame.cpp:94
+msgid "!12Ton MIDI-file (*.mid)|*.mid|any file (*)|*"
+msgstr ""
+
+#: ../frame.cpp:106
+msgid "Load series"
+msgstr ""
+
+#: ../frame.cpp:110
+msgid "Invalid file format!"
+msgstr ""
+
+#: ../frame.cpp:110
+msgid "Cannot read file"
+msgstr ""
+
+#: ../frame.cpp:119
+msgid "Save series"
+msgstr ""
+
+#: ../frame.cpp:151
+msgid "Calculating..."
+msgstr ""
+
+#: ../frame.cpp:167
+msgid "This box must never appear!"
+msgstr ""
+
+#: ../frame.cpp:176
+msgid "Load algorithms"
+msgstr ""
+
+#: ../frame.cpp:177
+msgid "!12Ton algorithm file (*.scm)|*.scm|any file (*)|*"
+msgstr ""
+
+#: ../frame.cpp:197
+#, c-format
+msgid "wx12Ton %s is !12Ton for wxWidgets."
+msgstr ""
+
+#: ../frame.cpp:218
+msgid "About !12Ton"
+msgstr ""
+
+#: ../list_relat.cpp:124
+msgid ""
+"The list on the left contains all normalized series,\n"
+"excluding series, which contain tonal phrases, where"
+msgstr ""
+
+#: ../list_relat.cpp:129
+msgid "number of series to show in window:"
+msgstr ""
+
+#: ../playfile.cpp:42 ../playfile.cpp:65
+msgid "Error running MIDI program"
+msgstr ""
+
+#: ../playfile.cpp:43
+msgid "Error playing MIDI sequence"
+msgstr ""
+
+#: ../playfile.cpp:64
+#, c-format
+msgid "Cannot execute command \"%s\""
+msgstr ""
+
+#: ../series_widget.cpp:35
+msgid "invalid series"
+msgstr ""
+
+#: ../wx12Ton.cpp:106
+msgid "retrograde"
+msgstr ""
+
+#: ../wx12Ton.cpp:107
+msgid "inversion"
+msgstr ""
+
+#: ../wx12Ton.cpp:108
+msgid "transpose (m)"
+msgstr ""
+
+#: ../wx12Ton.cpp:109
+msgid "normalize"
+msgstr ""
+
+#: ../wx12Ton.cpp:110
+msgid "relative (t,m)"
+msgstr ""
+
+#: ../wx12Ton.cpp:153
+msgid "MIDI program already running"
+msgstr ""
+
+#: ../wx12Ton.cpp:154
+msgid "Cannot play MIDI sequence"
+msgstr ""
+
+#: ../helper.h:32
+msgid "c natural"
+msgstr ""
+
+#: ../helper.h:32
+msgid "c sharp"
+msgstr ""
+
+#: ../helper.h:32
+msgid "d natural"
+msgstr ""
+
+#: ../helper.h:32
+msgid "e flat"
+msgstr ""
+
+#: ../helper.h:32
+msgid "e natural"
+msgstr ""
+
+#: ../helper.h:33
+msgid "f natural"
+msgstr ""
+
+#: ../helper.h:33
+msgid "f sharp"
+msgstr ""
+
+#: ../helper.h:33
+msgid "g natural"
+msgstr ""
+
+#: ../helper.h:33
+msgid "g sharp"
+msgstr ""
+
+#: ../helper.h:33
+msgid "a natural"
+msgstr ""
+
+#: ../helper.h:34
+msgid "b flat"
+msgstr ""
+
+#: ../helper.h:34
+msgid "b natural"
+msgstr ""
+
+#: ../helper.h:40
+#, c-format
+msgid "note \"%s\" occurs twice"
+msgstr ""
+
+#: ../helper.h:46
+msgid "perfect fourth/fifth"
+msgstr ""
+
+#: ../helper.h:47
+msgid "major/minor chord"
+msgstr ""
+
+#: ../helper.h:48
+msgid "three identical intervals in a row"
+msgstr ""
+
+#: ../helper.h:49
+msgid "not all intervals do appear"
+msgstr ""
+
+#: ../helper.h:50
+msgid "series tests OK"
+msgstr ""
+
+#: ../tonal_widget.h:36
+msgid "tonal is"
+msgstr ""
+
+#: ../menu.inc:23
+msgid "&Form"
+msgstr ""
+
+#: ../menu.inc:25
+msgid "&Edit"
+msgstr ""
+
+#: ../menu.inc:25
+msgid "Edit selected form."
+msgstr ""
+
+#: ../menu.inc:27
+msgid "&Goto nomalized"
+msgstr ""
+
+#: ../menu.inc:27
+msgid "Select normalized form."
+msgstr ""
+
+#: ../menu.inc:29
+msgid "Se&t"
+msgstr ""
+
+#: ../menu.inc:29
+msgid "Set selected form as new basic form."
+msgstr ""
+
+#: ../menu.inc:31
+msgid "&Play"
+msgstr ""
+
+#: ../menu.inc:31
+msgid "Play selected form on MIDI device."
+msgstr ""
+
+#: ../menu.inc:34
+msgid "&Open..."
+msgstr ""
+
+#: ../menu.inc:34
+msgid "Load a series from a !12Ton MIDI-file"
+msgstr ""
+
+#: ../menu.inc:36
+msgid "&Save as..."
+msgstr ""
+
+#: ../menu.inc:36
+msgid "Save selected form as !12Ton MIDI-file."
+msgstr ""
+
+#: ../menu.inc:39
+msgid "&Other"
+msgstr ""
+
+#: ../menu.inc:41
+msgid "&Print..."
+msgstr ""
+
+#: ../menu.inc:41
+msgid "Print all forms."
+msgstr ""
+
+#: ../menu.inc:43
+msgid "&Find series..."
+msgstr ""
+
+#: ../menu.inc:43
+msgid "Show the complete set of normalized series."
+msgstr ""
+
+#: ../menu.inc:47
+msgid "&Load Algorithms"
+msgstr ""
+
+#: ../menu.inc:47
+msgid "Load a different set of algorithms."
+msgstr ""
+
+#: ../menu.inc:51
+msgid "&About..."
+msgstr ""
+
+#: ../menu.inc:51
+msgid "about !12Ton"
+msgstr ""
+
+#: ../menu.inc:53
+msgid "&Exit"
+msgstr ""
+
+#: ../menu.inc:53
+msgid "Exit !12Ton."
+msgstr ""

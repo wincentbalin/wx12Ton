@@ -1,0 +1,15 @@
++-----------------+
+|wx12Ton TODO file|
++-----------------+
+
+-distribution should not contain cvs stuff in documentation directories
+-some documentation is needed, how to use and configure wx12Ton
+-fix the FIXME stuff
+-guile interface: need OCT_MIN/MAX support
+-wx interface: command-line flag to load algorithms
+-wx interface: use multithread (difficult task)
+-wx interface: "find series" should allow to identify a series
+-wx interface: better support for wxX11-2.5.2
+-wx interface: replace playmus_12T by internal player (difficult task)
+-wx interface: correct default languages for Windows 
+               (but I guess, this is a wxWidgets bug)

@@ -1,0 +1,32 @@
++-----------------+
+|wx12Ton ChangeLog|
++-----------------+
+
+1.1.0-rc1	06/24/04
+ *guile algorithms can be used in "edit series"
+ *dialogs have nicer look / better spelling
+ -cannot play, if already playing
+ -improved printing support (in particular for postscript)
+ *fixed bug in enter series (key up/down behaviour)
+ -if more then one form is normalized, (only) the first normalized is series is
+  selected on "Goto Normalized"
+ -minor fixes / code cleanup
+1.0.2	06/01/04
+ *a !12Ton MIDI-file can now be passed at command line
+ -no more mixing of missing and non-missing octave information
+ -maintainer compiling works now only with gcc >= 3.4.0 
+ -internal improvements in algorithms
+ *guile bindings (experimental, not yet in windows binary)
+ *17% less memory consumption on "find series"
+ -start of documentation (source, guile-interface)
+1.0.1	05/09/04 (never released)
+ -further ./configure tweaks
+1.0.0	05/05/04
+ -minor changes
+ -improved configure script
+ -playmus_12T compiles now out-of-the-box if using MinGW
+ -now omitting "-f <midi_file>" to playmus_12T no longer causes a segfault
+ *printing prints now all 24 forms
+ -changed word "perspektive" to correct(?) English word "form"
+0.90	04/19/04
+ -initial release

@@ -1,0 +1,17 @@
++-----------------+
+|wx12Ton NEWS file|
++-----------------+
+
+1.1.0-rc1 Release candidate 1 for version 1.1.0. The upcomming release
+	introduces much nicer dialogs and more algorithms in the "edit menu"
+	window. If you have guile installed, you can now even load your own
+	algorithms at runtime.
+1.0.2	This release includes minor enhancements, e.g. a !12Ton MIDI-file may
+        be passed as command line arg. An experimental guile interface is
+        included.
+1.0.0	All bugs found in the beta release were fixed successfully and thus
+	the status changes from "beta" to "stable". The only major difference
+	is that printing now prints all 24 forms instead of only the basic
+	form.
+0.90	This is the initial (beta) release. If no bugs are reported within next
+	weeks, this version will become the stable release 1.0.

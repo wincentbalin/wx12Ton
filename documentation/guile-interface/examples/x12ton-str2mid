@@ -1,0 +1,21 @@
+#! /usr/bin/guile -s
+!#
+;Copyright (C) 2004 Matthias Kleinmann <Matthias dot Kleinmann at gmx dot de>
+;This file is part of wx12Ton: http://wx12ton.sourceforge.net/
+;
+;Convert a letter code of a series into an !12ton MIDI file, e.g.
+;./x12ton-str2mid "ABCDEFGHIJKL" creates (or overwrites) the file
+;"ABCDEFGHIJKL.mid", which contains the series "c", "c sharp", ..., "b flat",
+;"b".
+
+(use-modules (site x12ton))
+
+(define i 1)
+(define p 0)(define s 0)
+(while (< i (length (command-line)))
+ (set! s (series_new (list-ref (command-line) i)))
+ (set! p (open-output-file (string-append (series_to_string s) ".mid")))
+ (series_write s p)
+ (close-output-port p)
+ (set! i (+ i 1))
+)

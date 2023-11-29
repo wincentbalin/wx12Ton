@@ -1,0 +1,84 @@
++-------------------+
+|wx12Ton README file|
++-------------------+
+
+version:      wx12Ton 1.1.0-rc1 (06/24/04)
+ships with:   libguile-12ton.so 1.0.0
+translations: German, English
+author:       Matthias Kleinmann <Matthias dot Kleinmann at gmx dot de>
+license:      GNU General Public License
+homepage:     http://wx12ton.sourceforge.net/
+download:     http://sourceforge.net/project/showfiles.php?group_id=107429
+
+Content
+-------
+*Short Description
+*Requirements
+*Copyright & Warranty
+
+Short Description
+-----------------
+wx12Ton is a complete rewrite of the DOS shareware program !12Ton, which I
+wrote in the mid-nineties.
+
+At the beginning of the last century twelve-note composition was a celebrated
+new technique to compose music without tonal sounds. wx12Ton now helps to
+compose and analyse such music. In particular it displays the 48 forms of a
+twelve-note series (which is a lengthy task if you do it by hand) and tests the
+series for some particular features such as tonal phrases or whether all
+intervals occur in the series. A twelve-note series exactly consists of all
+twelve different notes within an octave (c, c sharp,..., b flat, b) and thus
+there are about half a billion possible series. However, since every series has
+48 forms, not all of them are considered to be independent. If one further
+imposes some constraints the series should satisfy, the number of valid series
+can reduce to some 10'000 series. wx12Ton allows to search for series
+satisfying certain criteria.
+
+The program is written in C++ using wxWidgets and I will take care, that that
+it compiles and runs at least for wxMSW (Windows 9x/ME/NT/2000/XP) and wxGTK
+(GTK2 on Linux). I will provide binaries for Win9x/ME/NT/2000/XP.
+
+Requirements
+------------
+*Windows 9x/ME/NT/2000/XP*
+It is strongly recommended to use the binaries (the .zip file), which are provided at the download page, since compiling under Windows is tricky despite the existence of a ./configure script. The provided binaries should run out of the box for Win9x/ME/NT/2000/XP. No installation is required, just unzip the package to a destination you like.
+
+*Other Platforms*
+Since binary packages for other platforms are much harder to generate (at least
+for Linux; I do not have access to any further platform), you need to compile
+from source. However feel free to provide binary packages, I will add your link
+to the wx12Ton homepage. The source code is available as tarball from the
+download page. In order to compile wx12Ton you will need at least the wxWidgets
+library >=2.2.0 (http://www.wxwidgets.org/). In order to play a series on your
+MIDI-device or sound card, you will need in addition either a working
+MIDI-player or the SDL_mixer library
+(http://www.libsdl.org/projects/SDL_mixer). If you further plan to use guile
+algorithms, you must have installed guile >=1.6.0
+(http://www.gnu.org/software/guile).
+
+wx12Ton was tested to compile well on Linux (GTK2, fedora-1.90-test1) and
+MinGW(3.1.0-1)+MinSYS(1.0.10-rc-5) on Windows XP home edition; in addition
+basic functionality was tested for wxX11(2.5.2). Please report successful
+compiles for other platforms.
+
+Copyright & Warranty
+--------------------
+For the whole archive this applies:
+
+ Copyright (C) 2004 Matthias Kleinmann <Matthias dot Kleinmann at gmx dot de>
+ All rights reserved.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
